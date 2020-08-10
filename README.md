@@ -20,3 +20,5 @@ To begin,
 4. Run "yarn start" or "npm start" to start the project. 
 
 You will initially be redirected to SignIN page. Select the option "Don't have an account? SignUp" and you will be redirected to SignUP page. Enter credentials and you will be logged into Dashboard. 
+
+Video Demo Link: https://youtu.be/aWUr3GRbhhs
