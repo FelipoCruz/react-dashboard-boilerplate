@@ -3,18 +3,39 @@ import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts/lib';
 import Title from './Title';
 
-function createData(time, amount) {
-  return { time, amount };
+function createData(day, amount) {
+  return { day, amount };
 }
 
+function weekDate(days) {
+  let todayDate = new Date();
+  todayDate.setDate(todayDate.getDate()-days);
+  let date = todayDate.getDate()
+  let month = todayDate.getMonth()+1
+  let day = todayDate.getDay()
+  const daysString = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  let dayInWords = daysString[day]
+  return String(date).concat('/', String(month), ' ', String(dayInWords))
+}
+
+const weekDay = [
+  weekDate(6),
+  weekDate(5),
+  weekDate(4),
+  weekDate(3),
+  weekDate(2),
+  weekDate(1),
+  weekDate(0),
+]
+
 const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
+  createData(weekDay[0], 500),
+  createData(weekDay[1], 300),
+  createData(weekDay[2], 800),
+  createData(weekDay[3], 800),
+  createData(weekDay[4], 1500),
+  createData(weekDay[5], 2000),
+  createData(weekDay[6], 200),
 ];
 
 export default function Chart(props) {
@@ -33,7 +54,7 @@ export default function Chart(props) {
             left: 24,
           }}
         >
-          <XAxis dataKey="time" stroke={theme.palette.text.secondary} dy={0}>
+          <XAxis dataKey="day" stroke={theme.palette.text.secondary} dy={0}>
           </XAxis>
           <YAxis stroke={theme.palette.text.secondary}>
             <Label
@@ -41,10 +62,10 @@ export default function Chart(props) {
               position="left"
               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
             >
-              Transactions
+              Amount
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
+          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={true} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
