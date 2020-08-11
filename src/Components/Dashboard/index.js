@@ -85,13 +85,13 @@ function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12} md={9} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <Chart currency={currency} />
               </Paper>
             </Grid>
             {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={3} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <Balance currency={currency} />
               </Paper>
